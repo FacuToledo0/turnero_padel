@@ -1,0 +1,35 @@
+services:
+  - type: web
+    name: turnero-padel
+    env: python
+    plan: free
+    buildCommand: |
+      pip install -r requirements.txt
+      python manage.py collectstatic --noinput
+    startCommand: |
+      gunicorn turnero_padel.wsgi:application --log-file -
+    envVars:
+      - key: SECRET_KEY
+        sync: false
+      - key: DEBUG
+        value: 'False'
+      - key: ALLOWED_HOSTS
+        # Set automatically on first deploy: <service>.onrender.com
+        sync: false
+      - key: CSRF_TRUSTED_ORIGINS
+        # e.g. https://<service>.onrender.com
+        sync: false
+      - key: DATABASE_URL
+        fromDatabase:
+          name: turnero-padel-db
+          property: connectionString
+      - key: DB_SSL_REQUIRED
+        value: 'True'
+      - key: DB_CONN_MAX_AGE
+        value: '600'
+    autoDeploy: true
+    healthCheckPath: /
+
+databases:
+  - name: turnero-padel-db
+    plan: free

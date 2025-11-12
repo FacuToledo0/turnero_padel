@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Seleccionar Turno{% endblock %}
+
+{% block content %}
+<h2>Turnos disponibles para {{ fecha }}</h2>
+<table class="table table-bordered text-center">
+    <thead>
+        <tr>
+            <th>Cancha</th>
+            {% for inicio, fin in horarios %}
+            <th>{{ inicio }} - {{ fin }}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for fila in grilla %}
+        <tr>
+            <td>{{ fila.cancha.nombre }}</td>
+            {% for turno in fila.turnos %}
+            <td>
+                {% if turno.ocupado %}
+                <button class="btn btn-secondary btn-sm" disabled>Ocupado</button>
+                {% else %}
+                <a href="{% url 'reservas:confirmar_turno' fecha=fecha cancha_id=fila.cancha.id hora_inicio=turno.inicio hora_fin=turno.fin %}" 
+                    class="btn btn-success btn-sm">Reservar</a>
+                {% endif %}
+            </td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

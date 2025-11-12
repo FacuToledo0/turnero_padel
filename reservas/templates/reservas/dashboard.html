@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<h2>Reservas</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Cancha</th>
+            <th>Usuario</th>
+            <th>Fecha</th>
+            <th>Hora Inicio</th>
+            <th>Hora Fin</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for reserva in reservas %}
+        <tr>
+            <td>{{ reserva.cancha.nombre }}</td>
+            <td>{{ reserva.usuario.username }}</td>
+            <td>{{ reserva.fecha }}</td>
+            <td>{{ reserva.hora_inicio|time:"H:i" }}</td>
+            <td>{{ reserva.hora_fin|time:"H:i" }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

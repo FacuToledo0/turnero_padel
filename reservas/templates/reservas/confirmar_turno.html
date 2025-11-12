@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Confirmar Turno{% endblock %}
+
+{% block content %}
+<h2>Confirmar Turno</h2>
+<p>Cancha: {{ cancha.nombre }}</p>
+<p>Fecha: {{ fecha }}</p>
+<p>Horario: {{ hora_inicio }} - {{ hora_fin }}</p>
+
+<form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre</label>
+        <input type="text" class="form-control" name="nombre" required>
+    </div>
+    <div class="mb-3">
+        <label for="telefono" class="form-label">Teléfono</label>
+        <input type="text" class="form-control" name="telefono" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Confirmar Reserva</button>
+</form>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Mis Reservas{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-3">Mis Reservas</h2>
+
+    {% if reservas %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Cancha</th>
+                    <th>Horario</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for reserva in reservas %}
+                <tr>
+                    <td>{{ reserva.fecha }}</td>
+                    <td>{{ reserva.cancha.nombre }}</td>
+                    <td>{{ reserva.hora_inicio|time:"H:i" }} - {{ reserva.hora_fin|time:"H:i" }}</td>
+                    <td>
+                        {% if reserva.fecha < today %}
+                            <span class="badge bg-secondary">Finalizada</span>
+                        {% else %}
+                            <span class="badge bg-success">Próxima</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="alert alert-info">No tenés reservas aún.</div>
+    {% endif %}
+</div>
+{% endblock %}

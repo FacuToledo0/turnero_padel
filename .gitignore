@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+.eggs/
+.build/
+dist/
+build/
+
+# Virtual envs
+.venv/
+venv/
+ENV/
+
+# Django
+*.log
+media/
+staticfiles/
+
+# Env files
+.env
+.env.*
+
+# SQLite (local dev)
+db.sqlite3
+
+# IDE/editor
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Coverage / test
+.coverage
+.pytest_cache/
+
+# Node (if any)
+node_modules/

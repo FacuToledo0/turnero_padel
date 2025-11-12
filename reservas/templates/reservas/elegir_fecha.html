@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Elegir Fecha{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-3">Seleccioná la fecha</h2>
+    <form method="post" class="form">
+        {% csrf_token %}
+        <div class="mb-3">
+            {{ form.fecha.label_tag }}
+            {{ form.fecha }}
+            {% if form.fecha.errors %}
+                <div class="text-danger">
+                    {{ form.fecha.errors }}
+                </div>
+            {% endif %}
+        </div>
+        <button type="submit" class="btn btn-primary">Siguiente</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Reserva Exitosa{% endblock %}
+
+{% block content %}
+<div class="alert alert-success">
+    <h2>¡Reserva exitosa!</h2>
+    <p>Tu turno ha sido reservado correctamente.</p>
+    <a href="{% url 'reservas:home' %}" class="btn btn-primary">Volver al inicio</a>
+</div>
+{% endblock %}
