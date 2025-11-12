@@ -11,6 +11,8 @@ python-dotenv==1.0.1
 psycopg[binary]==3.2.12
 # HTTP client required by django-allauth providers (e.g., Google)
 requests==2.32.3
+# JWT support required by django-allauth Google provider
+PyJWT==2.9.0
 # Project dependencies
 django-allauth==65.3.0
 django-widget-tweaks==1.5.0
