@@ -7,9 +7,8 @@ services:
       pip install -r requirements.txt
       python manage.py collectstatic --noinput
     startCommand: |
+      python manage.py bootstrap_production && \
       gunicorn turnero_padel.wsgi:application --log-file -
-    postDeployCommand: |
-      python manage.py bootstrap_production
     envVars:
       - key: SECRET_KEY
         sync: false
